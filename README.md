@@ -8,4 +8,8 @@ go to test/ directory and run
 
 ``` go test ```
 
-![image](https://user-images.githubusercontent.com/48453297/123999291-bc311b00-d9a8-11eb-88da-585ae26a533e.png)
+###########################
+
+this is the new diagram for the new architecture:
+
+![image](https://user-images.githubusercontent.com/48453297/123999459-eb478c80-d9a8-11eb-95ae-8c4cb7237507.png)
