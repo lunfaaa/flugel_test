@@ -38,3 +38,11 @@ resource "aws_security_group" "flugel" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_internet_gateway" "gwflugel" {
+  vpc_id = aws_vpc.flugel.id
+
+  tags = {
+    Name = "flugel"
+  }
+}

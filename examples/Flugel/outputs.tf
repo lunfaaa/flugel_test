@@ -37,3 +37,8 @@ output "instance_tag_instance2" {
   description = "instnace tag"
   value       = aws_instance.Flugel1.tags
 }
+
+output "public_key" {
+  description = "public_key"
+  value       = tls_private_key.flugelkey.public_key_pem
+}
