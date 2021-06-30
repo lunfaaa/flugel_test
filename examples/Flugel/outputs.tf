@@ -18,7 +18,7 @@ output "instance_tag" {
   value       = aws_instance.Flugel.tags
 }
 
-output "s3_tag" {
-  description = "S3 tag"
-  value       = aws_s3_bucket.flugel.tags
-}
+#output "s3_tag" {
+#  description = "S3 tag"
+#  value       = aws_s3_bucket.flugel.tags
+#}
