@@ -8,6 +8,56 @@ resource "aws_instance" "testInstance" {
   Name = "Flugel-instance1"
   Owner = "InfraTeam"
  }
+  provisioner "file" {
+    source      = "files/script.sh"
+    destination = "/tmp/script.sh"
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "/tmp/script.sh args",
+    ]
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+  provisioner "file" {
+    source      = "files/index.nginx-debian_instance-1.html"
+    destination = "/tmp/index.nginx-debian.html"
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo mv /tmp/index.nginx-debian.html /var/www/html/index.nginx-debian.html",
+      "sudo /etc/init.d/nginx restart",
+    ]
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+
 }
 
 resource "aws_instance" "testInstance2" {
@@ -20,4 +70,55 @@ resource "aws_instance" "testInstance2" {
   Name = "Flugel-instance2"
   Owner = "InfraTeam"
  }
+  provisioner "file" {
+    source      = "files/script.sh"
+    destination = "/tmp/script.sh"
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "/tmp/script.sh args",
+    ]
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+  provisioner "file" {
+    source      = "files/index.nginx-debian_instance-2.html"
+    destination = "/tmp/index.nginx-debian.html"
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo mv /tmp/index.nginx-debian.html /var/www/html/index.nginx-debian.html",
+      "sudo /etc/init.d/nginx restart",
+    ]
+    connection {
+      host        = self.public_dns
+      type        = "ssh"
+      agent       = true
+      private_key = "${file("~/.ssh/id_rsa")}"
+      user        = "ubuntu"
+    }
+  }
+
 }
+
