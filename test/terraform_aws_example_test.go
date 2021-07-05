@@ -19,7 +19,7 @@ func TestTerraformAwsExample(t *testing.T) {
 
 	// Give this EC2 Instance a unique ID for a name tag so we can distinguish it from any other EC2 Instance running
 	// in your AWS account
-	expectedName := "Flugel"
+	expectedName := "Flugel-instance1"
 
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
 	//awsRegion := aws.GetRandomStableRegion(t, nil, nil)
@@ -37,7 +37,6 @@ func TestTerraformAwsExample(t *testing.T) {
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
-			"instance_name": expectedName,
 			"instance_type": instanceType,
 		},
 
