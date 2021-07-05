@@ -1,25 +1,23 @@
-resource "aws_instance" "Flugel" {
-  ami                    = var.aws_ami
-  instance_type          = var.instance_type
-  #vpc_security_group_ids = ["${aws_vpc.flugel.id}"]
-  security_groups        = ["${aws_security_group.flugel.id}"]
-  subnet_id              = "${aws_subnet.flugel.id}"
-  key_name               = "flugelkey"
-  tags = {
-    Name = "Flugel-instance1"
-    Owner = "InfraTeam"
-  }
+resource "aws_instance" "testInstance" {
+  ami           = "${var.instance_ami}"
+  instance_type = "${var.instance_type}"
+  subnet_id = "${aws_subnet.subnet_public.id}"
+  vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
+  key_name = "${aws_key_pair.ec2key.key_name}"
+ tags = {
+  Name = "Flugel-instance1"
+  Owner = "InfraTeam"
+ }
 }
 
-resource "aws_instance" "Flugel1" {
-  ami                    = var.aws_ami
-  instance_type          = var.instance_type
-  #vpc_security_group_ids = ["${aws_vpc.flugel.id}"]
-  security_groups        = ["${aws_security_group.flugel.id}"]
-  subnet_id              = "${aws_subnet.flugel.id}"
-  key_name               = "flugelkey"
-  tags = {
-    Name = "Flugel-instance2"
-    Owner = "InfraTeam"
-  }
+resource "aws_instance" "testInstance2" {
+  ami           = "${var.instance_ami}"
+  instance_type = "${var.instance_type}"
+  subnet_id = "${aws_subnet.subnet_public2.id}"
+  vpc_security_group_ids = ["${aws_security_group.sg_80.id}"]
+  key_name = "${aws_key_pair.ec2key.key_name}"
+ tags = {
+  Name = "Flugel-instance2"
+  Owner = "InfraTeam"
+ }
 }

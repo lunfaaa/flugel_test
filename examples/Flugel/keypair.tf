@@ -1,10 +1,4 @@
-resource "tls_private_key" "flugelkey" {
-  algorithm = "RSA"
-}
-
-module "key_pair" {
-  source = "terraform-aws-modules/key-pair/aws"
-
-  key_name   = "flugelkey"
-  public_key = tls_private_key.flugelkey.public_key_openssh
+resource "aws_key_pair" "ec2key" {
+  key_name = "publicKey"
+  public_key = "${file(var.public_key_path)}"
 }
