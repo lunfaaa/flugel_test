@@ -1,8 +1,6 @@
-LIST_OF_APPS="nginx"
+#!/bin/bash
 
-sudo apt update -y && sudo apt upgrade -y
-sudo apt-get install -y aptitude 
+sudo apt update -y 
+sudo apt-get install nginx -y
 
-sudo aptitude update
-sudo aptitude install -y $LIST_OF_APPS
 sudo /etc/init.d/nginx restart

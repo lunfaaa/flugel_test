@@ -22,8 +22,8 @@ resource "aws_instance" "testInstance" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/script.sh",
-      "/tmp/script.sh args",
+      "sudo chmod +x /tmp/script.sh",
+      "sudo /tmp/script.sh",
     ]
     connection {
       host        = self.public_dns
@@ -34,7 +34,7 @@ resource "aws_instance" "testInstance" {
     }
   }
   provisioner "file" {
-    source      = "files/index.nginx-debian_instance-1.html"
+    source      = "files/index1.html"
     destination = "/tmp/index.nginx-debian.html"
     connection {
       host        = self.public_dns
@@ -84,9 +84,10 @@ resource "aws_instance" "testInstance2" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/script.sh",
-      "/tmp/script.sh args",
+      "sudo chmod +x /tmp/script.sh",
+      "sudo /tmp/script.sh",
     ]
+    
     connection {
       host        = self.public_dns
       type        = "ssh"
@@ -96,7 +97,7 @@ resource "aws_instance" "testInstance2" {
     }
   }
   provisioner "file" {
-    source      = "files/index.nginx-debian_instance-2.html"
+    source      = "files/index2.html"
     destination = "/tmp/index.nginx-debian.html"
     connection {
       host        = self.public_dns
